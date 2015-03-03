@@ -80,9 +80,15 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions(new Enemy(), new Player());
     }
 
+    function checkCollisions(enemy,player){
+        if(enemy.x===player.x && enemy.y === player.y){
+            player.x = 200;
+            player.y= 400;
+        }
+    }
     /* This is called by the update function  and loops through all of the
      * objects within your allEnemies array as defined in app.js and calls
      * their update() methods. It will then call the update function for your
