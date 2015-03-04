@@ -26,8 +26,12 @@ var Engine = (function(global) {
         lastTime;
 
     canvas.width = 505;
-    canvas.height = 606;
+    canvas.height = 707;
+    ctx.font = '12pt Helvetica';
+    ctx.fillStyle = 'black';
+    ctx.fillText("Score: ", 400, 20);
     doc.body.appendChild(canvas);
+
 
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
@@ -80,14 +84,16 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        checkCollisions(new Enemy(), new Player());
+        checkCollisions();
     }
 
-    function checkCollisions(enemy,player){
-        if(enemy.x===player.x && enemy.y === player.y){
-            player.x = 200;
-            player.y= 400;
+    function checkCollisions(){
+        allEnemies.forEach(function(enemy) {
+            if(((enemy.x < player.x)&&(player.x < enemy.x+50))&&((enemy.y+100>player.y+50)&&(player.y+50> enemy.y+50))){                
+                player.x = 200;
+                player.y= 400;
         }
+        });
     }
     /* This is called by the update function  and loops through all of the
      * objects within your allEnemies array as defined in app.js and calls
@@ -117,12 +123,13 @@ var Engine = (function(global) {
                 'images/water-block.png',   // Top row is water
                 'images/stone-block.png',   // Row 1 of 3 of stone
                 'images/stone-block.png',   // Row 2 of 3 of stone
-                'images/stone-block.png',   // Row 3 of 3 of stone
+                'images/stone-block.png',   // Row 2 of 3 of stone
+                'images/stone-block.png',   // Row 4 of 4 of stone
                 'images/grass-block.png',   // Row 1 of 2 of grass
                 'images/grass-block.png'    // Row 2 of 2 of grass
             ],
-            numRows = 6,
-            numCols = 5,
+            numRows = 7,
+            numCols = 6,
             row, col;
 
         /* Loop through the number of rows and columns we've defined above

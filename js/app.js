@@ -38,10 +38,15 @@ Enemy.prototype.render = function() {
 var Player = function() {
     this.sprite = 'images/char-boy.png';
     this.x = 200;
-    this.y = 400;
+    this.y = 485;
 }
 
 Player.prototype.update = function(){
+    if (this.y <= 30){
+        alert("You won!");
+        this.x = 200;
+        this.y = 485;
+    }
 
 }
 Player.prototype.render = function(){
@@ -49,8 +54,7 @@ Player.prototype.render = function(){
     
 }
 
-Player.prototype.handleInput = function(e){
-
+Player.prototype.handleInput = function(e) {
     switch(e){
         case 'left':
             if(this.x>0){
@@ -58,31 +62,28 @@ Player.prototype.handleInput = function(e){
             }  
             break;          
         case 'up':
-            if(this.y>30){
+            if(this.y>0){
                 this.y -= 82;                
             }  
             break;            
         case 'right':
-            if(this.x<400){
+            if(this.x<500){
                 this.x += 100;                 
             }
             break;
         case 'down':
-            if(this.y<400){
+            if(this.y<450){
                 this.y += 82;                
             }   
             break;                
-    }
-
-       
+    }      
 }
-
-
+''
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-var allEnemies = [new Enemy(0,50,2),new Enemy(-50,140,4),new Enemy(-100,220,6)];
+var allEnemies = [new Enemy(-150,50,9),new Enemy(-100,140,5),new Enemy(-50,220,7),new Enemy(0,300,4)];
 
 
 var player = new Player();
