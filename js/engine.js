@@ -91,7 +91,7 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             if(((enemy.x < player.x)&&(player.x < enemy.x+50))&&((enemy.y+100>player.y+50)&&(player.y+50> enemy.y+50))){                
                 player.x = 200;
-                player.y= 400;
+                player.y= 485;
         }
         });
     }
