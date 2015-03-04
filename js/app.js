@@ -1,3 +1,4 @@
+
 // Enemies our player must avoid
 var Enemy = function(x,y,s) {
     // Variables applied to each of our instances go here,
@@ -22,9 +23,9 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     this.x += this.speed+dt;
     if(this.x > 505){
-        this.x = -100;
-    }
-    
+        this.x = -50;
+
+    }    
 }
 
 // Draw the enemy on the screen, required method for game
@@ -40,13 +41,20 @@ var Player = function() {
     this.x = 200;
     this.y = 485;
 }
-
-Player.prototype.update = function(){
+var i = 0;
+Player.prototype.update = function(){  
+    
     if (this.y <= 30){
-        alert("You won!");
+        i++;          
+        if (i === 3){
+            alert("You win!\nScore: "+i);
+            i = 0;
+            Score.updateLives(3);
+        }  
+        Score.update(i);              
         this.x = 200;
         this.y = 485;
-    }
+    } 
 
 }
 Player.prototype.render = function(){
@@ -100,3 +108,4 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+

@@ -13,7 +13,7 @@
  * the canvas' context (ctx) object globally available to make writing app.js
  * a little simpler to work with.
  */
-
+var j = 3;
 var Engine = (function(global) {
     /* Predefine the variables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
@@ -27,9 +27,7 @@ var Engine = (function(global) {
 
     canvas.width = 505;
     canvas.height = 707;
-    ctx.font = '12pt Helvetica';
-    ctx.fillStyle = 'black';
-    ctx.fillText("Score: ", 400, 20);
+    
     doc.body.appendChild(canvas);
 
 
@@ -85,13 +83,21 @@ var Engine = (function(global) {
     function update(dt) {
         updateEntities(dt);
         checkCollisions();
-    }
 
+    }
+    
     function checkCollisions(){
         allEnemies.forEach(function(enemy) {
             if(((enemy.x < player.x)&&(player.x < enemy.x+50))&&((enemy.y+100>player.y+50)&&(player.y+50> enemy.y+50))){                
                 player.x = 200;
                 player.y= 485;
+                j--;
+                if (j < 0){
+                    alert("Game Over!\nScore: " +i);
+                    j = 3;                    
+                    Score.update(0);
+                }
+                Score.updateLives(j);
         }
         });
     }
@@ -136,6 +142,7 @@ var Engine = (function(global) {
          * and, using the rowImages array, draw the correct image for that
          * portion of the "grid"
          */
+
         for (row = 0; row < numRows; row++) {
             for (col = 0; col < numCols; col++) {
                 /* The drawImage function of the canvas' context element
@@ -148,7 +155,8 @@ var Engine = (function(global) {
                 ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
             }
         }
-
+        //ctx.drawImage(Resources.get('images/Heart-small.png'),0,0);
+        //ctx.drawImage(Resources.get('images/Star-small.png'),360,-10);
 
         renderEntities();
     }
@@ -185,7 +193,13 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/char-cat-girl.png',
+        'images/char-horn-girl.png',
+        'images/char-pink-girl.png',
+        'images/char-princess-girl.png',         
+        'images/Heart-small.png',
+        'images/Star-small.png',
     ]);
     Resources.onReady(init);
 
