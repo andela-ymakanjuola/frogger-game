@@ -46,7 +46,7 @@ Player.prototype.update = function(){
     
     if (this.y <= 30){
         i++;          
-        if (i === 3){
+        if (i === 10){
             alert("You win!\nScore: "+i);
             i = 0;
             Score.updateLives(3);
