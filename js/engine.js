@@ -13,7 +13,7 @@
  * the canvas' context (ctx) object globally available to make writing app.js
  * a little simpler to work with.
  */
-var j = 3;
+
 var Engine = (function(global) {
     /* Predefine the variables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
@@ -91,13 +91,14 @@ var Engine = (function(global) {
             if(((enemy.x < player.x)&&(player.x < enemy.x+50))&&((enemy.y+100>player.y+50)&&(player.y+50> enemy.y+50))){                
                 player.x = 200;
                 player.y= 485;
-                j--;
-                if (j < 0){
-                    alert("Game Over!\nScore: " +i);
-                    j = 3;                    
-                    Score.update(0);
+                lives--;
+                if (lives < 0){
+                    alert("Game Over!\nScore: " +score);
+                    lives = 3; 
+                    score = 0;                   
+                    Score.update(score);
                 }
-                Score.updateLives(j);
+                Score.updateLives(lives);
         }
         });
     }

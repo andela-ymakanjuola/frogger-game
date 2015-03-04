@@ -1,3 +1,5 @@
+var score = 0;
+var lives = 3;
 
 // Enemies our player must avoid
 var Enemy = function(x,y,s) {
@@ -41,17 +43,18 @@ var Player = function() {
     this.x = 200;
     this.y = 485;
 }
-var i = 0;
+
 Player.prototype.update = function(){  
     
     if (this.y <= 30){
-        i++;          
-        if (i === 10){
+        score++;          
+        if (score === 10){
             alert("You win!\nScore: "+i);
-            i = 0;
-            Score.updateLives(3);
+            score = 0;
+            lives=3;
+            Score.updateLives(lives);
         }  
-        Score.update(i);              
+        Score.update(score);              
         this.x = 200;
         this.y = 485;
     } 
