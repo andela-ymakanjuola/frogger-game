@@ -26,7 +26,7 @@ var Engine = (function(global) {
         lastTime;
 
     canvas.width = 505;
-    canvas.height = 707;
+    canvas.height = 606;
     
     doc.body.appendChild(canvas);
 
@@ -84,17 +84,22 @@ var Engine = (function(global) {
         updateEntities(dt);
         checkCollisions();
 
+        if (player.proximity()&&count>=10&&allEnemies.length<6){
+            allEnemies.push(new Enemy(-10,Math.round(Math.random()*200 +50), Math.round(Math.random()*6+4)));
+            console.log("crazy!");
+            count = 0;
+        }
+
     }
     
     function checkCollisions(){
         allEnemies.forEach(function(enemy) {
             if(((enemy.x < player.x)&&(player.x < enemy.x+50))&&((enemy.y+100>player.y+50)&&(player.y+50> enemy.y+50))){                
-                player.x = 200;
-                player.y= 485;
+                player.reset();
                 lives--;
                 if (lives < 0){
                     alert("\t\tGame Over!\n\n\t\tScore: " +score);
-                    resetscore();
+                    Score.reset();
                 }
                 
         }
@@ -112,6 +117,10 @@ var Engine = (function(global) {
             enemy.update(dt);
         });
         player.update();
+
+     
+
+        
     }
 
     /* This function initially draws the "game level", it will then call
@@ -130,11 +139,10 @@ var Engine = (function(global) {
                 'images/stone-block.png',   // Row 2 of 3 of stone
                 'images/stone-block.png',   // Row 2 of 3 of stone
                 'images/stone-block.png',   // Row 4 of 4 of stone
-                'images/grass-block.png',   // Row 1 of 2 of grass
-                'images/grass-block.png'    // Row 2 of 2 of grass
+                'images/grass-block.png',   // Row 1 of 1 of grass
             ],
-            numRows = 7,
-            numCols = 6,
+            numRows = 6,
+            numCols = 5,
             row, col;
 
         /* Loop through the number of rows and columns we've defined above

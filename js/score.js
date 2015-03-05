@@ -18,10 +18,15 @@
             ctx.drawImage(Resources.get('images/heart-small-white.png'), i * 40, 0);           
         }
 	}
+	function reset(){
+		lives = 3;
+		score = 0;
+	}
 
 	window.Score = {
 		update: update,
-		updateLives: updateLives
+		updateLives: updateLives,
+		reset: reset
 	};
 
 })();

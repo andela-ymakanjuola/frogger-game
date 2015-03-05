@@ -26,8 +26,9 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     this.x += this.speed+dt;
     if(this.x > 505){
-        this.x = -(Math.random()*40 +10);
-        console.log(this.x);
+        this.x = -Math.round((Math.random()*80 +10));
+        count++;
+        console.log(count);
 
     }    
 }
@@ -42,8 +43,7 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 var Player = function() {
     this.sprite = 'images/char-boy.png';
-    this.x = 200;
-    this.y = 485;
+    this.reset();
 }
 
 Player.prototype.update = function(){  
@@ -52,12 +52,11 @@ Player.prototype.update = function(){
         score++;          
         if (score === 10){
             alert("\t\tYou win!\n\n\t\tScore: "+score);
-            resetscore();
+            Score.reset();
             
         }  
                      
-        this.x = 200;
-        this.y = 485;
+        this.reset();
     } 
 
 }
@@ -79,7 +78,7 @@ Player.prototype.handleInput = function(e) {
             }  
             break;            
         case 'right':
-            if(this.x<500){
+            if(this.x<400){
                 this.x += 100;                 
             }
             break;
@@ -90,11 +89,21 @@ Player.prototype.handleInput = function(e) {
             break;                
     }      
 }
-''
+Player.prototype.reset=function(){
+    this.x = 200;
+    this.y = 400;
+
+}
+Player.prototype.proximity =function(){
+    if(this.y < 300){
+        return true;
+    }
+    return false; 
+}
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var crazyEnemy = new Enemy(-50,Math.random()*200 +50, Math.random());
+var crazyEnemy = new Enemy(-10,Math.round(Math.random()*200 +50), Math.round(Math.random()*6+4));
 var allEnemies = [new Enemy(-150,50,9),new Enemy(-100,140,5),new Enemy(-50,220,7),new Enemy(0,300,4)];
 var player = new Player();
 
@@ -111,13 +120,3 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
-function playerproximity(){
-    if(player.y <= 300){
-        return true;
-    }
-    return false;
-}
-function resetscore(){
-    score = 0;
-    lives=3;
-}
