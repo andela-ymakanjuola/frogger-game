@@ -1,5 +1,6 @@
 var score = 0;
 var lives = 3;
+var count = 0;
 
 // Enemies our player must avoid
 var Enemy = function(x,y,s) {
@@ -49,12 +50,12 @@ Player.prototype.update = function(){
     if (this.y <= 30){
         score++;          
         if (score === 10){
-            alert("You win!\nScore: "+score);
+            alert("\t\tYou win!\n\n\t\tScore: "+score);
             score = 0;
             lives=3;
-            Score.updateLives(lives);
+            
         }  
-        Score.update(score);              
+                     
         this.x = 200;
         this.y = 485;
     } 
@@ -93,10 +94,8 @@ Player.prototype.handleInput = function(e) {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-
+var crazyEnemy = new Enemy(-50,Math.random()*200 +50, Math.random());
 var allEnemies = [new Enemy(-150,50,9),new Enemy(-100,140,5),new Enemy(-50,220,7),new Enemy(0,300,4)];
-
-
 var player = new Player();
 
 // This listens for key presses and sends the keys to your
@@ -112,3 +111,12 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
+function playerproximity(){
+    if(player.y <= 300){
+        return true;
+    }
+    return false;
+}
+function resetscore(){
+
+}

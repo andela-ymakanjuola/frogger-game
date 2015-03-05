@@ -93,7 +93,7 @@ var Engine = (function(global) {
                 player.y= 485;
                 lives--;
                 if (lives < 0){
-                    alert("Game Over!\nScore: " +score);
+                    alert("\t\tGame Over!\n\n\t\tScore: " +score);
                     lives = 3; 
                     score = 0;                   
                     Score.update(score);
@@ -158,7 +158,8 @@ var Engine = (function(global) {
         }
         //ctx.drawImage(Resources.get('images/Heart-small.png'),0,0);
         //ctx.drawImage(Resources.get('images/Star-small.png'),360,-10);
-
+        Score.update();
+        Score.updateLives();
         renderEntities();
     }
 
@@ -175,6 +176,7 @@ var Engine = (function(global) {
         });
 
         player.render();
+        
     }
 
     /* This function does nothing but it could have been a good place to
