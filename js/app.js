@@ -26,7 +26,8 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     this.x += this.speed+dt;
     if(this.x > 505){
-        this.x = -50;
+        this.x = -(Math.random()*40 +10);
+        console.log(this.x);
 
     }    
 }
@@ -51,8 +52,7 @@ Player.prototype.update = function(){
         score++;          
         if (score === 10){
             alert("\t\tYou win!\n\n\t\tScore: "+score);
-            score = 0;
-            lives=3;
+            resetscore();
             
         }  
                      
@@ -118,5 +118,6 @@ function playerproximity(){
     return false;
 }
 function resetscore(){
-
+    score = 0;
+    lives=3;
 }

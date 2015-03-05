@@ -94,11 +94,9 @@ var Engine = (function(global) {
                 lives--;
                 if (lives < 0){
                     alert("\t\tGame Over!\n\n\t\tScore: " +score);
-                    lives = 3; 
-                    score = 0;                   
-                    Score.update(score);
+                    resetscore();
                 }
-                Score.updateLives(lives);
+                
         }
         });
     }
@@ -200,7 +198,8 @@ var Engine = (function(global) {
         'images/char-cat-girl.png',
         'images/char-horn-girl.png',
         'images/char-pink-girl.png',
-        'images/char-princess-girl.png' 
+        'images/char-princess-girl.png',
+        'images/heart-small-white.png' 
         
     ]);
     Resources.onReady(init);

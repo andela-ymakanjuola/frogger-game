@@ -11,12 +11,12 @@
 
 	function updateLives(){
 		ctx.beginPath();		
-		ctx.rect(0,5, 100, 40);
+		ctx.rect(0,0, 150, 50);
 		ctx.fillStyle = "white";
 		ctx.fill();
-		ctx.font = '20pt Helvetica';
-		ctx.fillStyle = 'red';
-		ctx.fillText("Lives: "+lives, 0, 30);
+		for (var i = 0; i < lives; i++) {			
+            ctx.drawImage(Resources.get('images/heart-small-white.png'), i * 40, 0);           
+        }
 	}
 
 	window.Score = {
