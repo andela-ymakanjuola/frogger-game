@@ -103,7 +103,7 @@ Player.prototype.proximity =function(){
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var crazyEnemy = new Enemy(-10,Math.round(Math.random()*200 +50), Math.round(Math.random()*6+4));
+ 
 var allEnemies = [new Enemy(-150,50,9),new Enemy(-100,140,5),new Enemy(-50,220,7),new Enemy(0,300,4)];
 var player = new Player();
 

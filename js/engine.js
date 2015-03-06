@@ -133,6 +133,7 @@ var Engine = (function(global) {
         /* This array holds the relative URL to the image used
          * for that particular row of the game level.
          */
+
         var rowImages = [
                 'images/water-block.png',   // Top row is water
                 'images/stone-block.png',   // Row 1 of 3 of stone
@@ -145,6 +146,10 @@ var Engine = (function(global) {
             numCols = 5,
             row, col;
 
+        ctx.beginPath();       
+        ctx.rect(0,0, 505, 50);
+        ctx.fillStyle = "white";
+        ctx.fill();
         /* Loop through the number of rows and columns we've defined above
          * and, using the rowImages array, draw the correct image for that
          * portion of the "grid"
