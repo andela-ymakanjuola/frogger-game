@@ -99,7 +99,8 @@ var Engine = (function(global) {
                 lives--;
                 if (lives < 0){
                     alert("\t\tGame Over!\n\n\t\tScore: " +score);
-                    Score.reset();
+                    //Score.reset();
+                    location.reload();
                 }
                 
         }

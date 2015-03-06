@@ -52,7 +52,8 @@ Player.prototype.update = function(){
         score++;          
         if (score === 10){
             alert("\t\tYou win!\n\n\t\tScore: "+score);
-            Score.reset();
+            //Score.reset();
+            location.reload();
             
         }  
                      
